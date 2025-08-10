@@ -5,6 +5,7 @@ import os
 from database import init_db
 from run_scrapper import run_scrape
 import threading
+import logging
 
 app = Flask(__name__)
 init_db()  # 👈 Ensure table is created before handling requests
