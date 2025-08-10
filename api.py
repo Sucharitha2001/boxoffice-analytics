@@ -3,7 +3,7 @@ import sqlite3
 import json
 import os
 from database import init_db
-from run_all_scrapers import run_scrape
+from run_scraper import run_scrape
 
 app = Flask(__name__)
 init_db()  # 👈 Ensure table is created before handling requests
