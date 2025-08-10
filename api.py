@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 import sqlite3
 import json
 import os
+from database import init_db
 
 app = Flask(__name__)
 init_db()  # 👈 Ensure table is created before handling requests
