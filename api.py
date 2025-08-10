@@ -4,6 +4,7 @@ import json
 import os
 
 app = Flask(__name__)
+init_db()  # 👈 Ensure table is created before handling requests
 
 @app.route('/')
 def home():
