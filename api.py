@@ -43,10 +43,13 @@ def scrape_data():
     return jsonify({"status": "Scraping started in background"}), 202
     
 def run_scraper():
+    logging.info("Scraper started")
     try:
         run_scrape()
+        logging.info("Data inserted")
         return jsonify({"status": "success", "message": "Scraping completed and data inserted."})
     except Exception as e:
+        logging.error("Scraper error: %s", e)
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
