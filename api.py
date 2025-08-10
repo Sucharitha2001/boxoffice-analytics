@@ -36,7 +36,7 @@ def get_collections():
 
     return jsonify(data)
 
-@app.route('/scrape', methods=['POST'])
+@app.route('/scrape', methods=['GET','POST'])
 def scrape_data():
     try:
         run_scrape()
