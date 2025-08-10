@@ -4,6 +4,7 @@ import json
 import os
 from database import init_db
 from run_scrapper import run_scrape
+import threading
 
 app = Flask(__name__)
 init_db()  # 👈 Ensure table is created before handling requests
@@ -38,6 +39,10 @@ def get_collections():
 
 @app.route('/scrape', methods=['GET','POST'])
 def scrape_data():
+    threading.Thread(target=run_scraper).start()
+    return jsonify({"status": "Scraping started in background"}), 202
+    
+def run_scraper():
     try:
         run_scrape()
         return jsonify({"status": "success", "message": "Scraping completed and data inserted."})
