@@ -3,6 +3,7 @@ import sqlite3
 import json
 import os
 from database import init_db
+from run_all_scrapers import run_scrape
 
 app = Flask(__name__)
 init_db()  # 👈 Ensure table is created before handling requests
@@ -34,6 +35,14 @@ def get_collections():
         })
 
     return jsonify(data)
+
+@app.route('/scrape', methods=['POST'])
+def scrape_data():
+    try:
+        run_scrape()
+        return jsonify({"status": "success", "message": "Scraping completed and data inserted."})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))  # Use Render's assigned port
