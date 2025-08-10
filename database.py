@@ -1,3 +1,5 @@
+import sqlite3
+
 def init_db():
     conn = sqlite3.connect("collections.db")
     cursor = conn.cursor()
