@@ -5,6 +5,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Welcome to Box Office Analytics API! Visit /collections to see data."
+
 @app.route('/collections')
 def get_collections():
     conn = sqlite3.connect("collections.db")
